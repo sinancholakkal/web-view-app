@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "184613600430",
+    "project_id": "web-view-app-phone-auth",
+    "storage_bucket": "web-view-app-phone-auth.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184613600430:android:0bcb4205f5276c4edc813f",
+        "android_client_info": {
+          "package_name": "com.example.web_view_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzSNcrjRQ2jUTdelq4fqu0iDRcp7fqRnE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
