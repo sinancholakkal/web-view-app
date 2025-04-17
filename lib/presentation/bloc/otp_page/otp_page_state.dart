@@ -7,3 +7,4 @@ final class OtpPageInitial extends OtpPageState {}
 class OtpVerifyLoadingState extends OtpPageState{}
 
 class OtpVerifiedState extends OtpPageState{}
+class OtpVerifyErrorState extends OtpPageState{}

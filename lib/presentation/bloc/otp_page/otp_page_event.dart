@@ -4,5 +4,6 @@ part of 'otp_page_bloc.dart';
 sealed class OtpPageEvent {}
  class OtpEnteredEvent extends OtpPageEvent{
   final String otp;
-  OtpEnteredEvent({required this.otp});
+  final String verificationId;
+  OtpEnteredEvent({required this.otp,required this.verificationId});
  }
