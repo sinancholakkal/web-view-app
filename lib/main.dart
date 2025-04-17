@@ -9,10 +9,13 @@ import 'package:web_view_app/presentation/bloc/login_page/login_page_bloc.dart';
 import 'package:web_view_app/presentation/bloc/otp_page/otp_page_bloc.dart';
 import 'package:web_view_app/presentation/pages/login_screen/login_page.dart';
 import 'package:web_view_app/presentation/pages/screen_splash/screen_splash.dart';
+import 'package:webview_flutter/webview_flutter.dart';
+import 'package:webview_flutter_android/webview_flutter_android.dart';
 
 void main()async {
     WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  WebViewPlatform.instance ??= AndroidWebViewPlatform();
   runApp(const MyApp());
 }
 
@@ -32,6 +35,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>AuthBloc())
       ],
       child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
         home: ScreenSplash(),
       ),
     );

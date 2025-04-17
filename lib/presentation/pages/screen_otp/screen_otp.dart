@@ -43,7 +43,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
             loadingWidget(context);
           }
           else if (state is OtpVerifiedState) {
-           Get.off(()=>const ScreenHome());
+           Get.offAll(()=> ScreenHome());
           
           }else if(state is OtpVerifyErrorState){
             log("erro state exicuted");
