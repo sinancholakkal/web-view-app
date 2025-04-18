@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:web_view_app/widget/alert_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:web_view_app/presentation/pages/login_screen/login_page.dart';
 
@@ -52,9 +55,12 @@ class _ScreenHomeState extends State<ScreenHome> {
         
         body: SafeArea(child: WebViewWidget(controller: webViewController)),
         floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            await FirebaseAuth.instance.signOut();
+          onPressed: (){
+            log("ontap called");
+            alertWidget(title: "Logout", content: "Are you sure want to logout now?",onTap: ()async{
+              await FirebaseAuth.instance.signOut();
             Get.off(() => const ScreenLogin());
+            },context: context);
           },
           child: const Icon(Icons.logout),
         ),
