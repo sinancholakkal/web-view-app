@@ -7,6 +7,9 @@ import 'package:pincode_input_fields/pincode_input_fields.dart';
 import 'package:web_view_app/core/constent.dart';
 import 'package:web_view_app/presentation/bloc/otp_page/otp_page_bloc.dart';
 import 'package:web_view_app/presentation/pages/screen_home/screen_home.dart';
+import 'package:web_view_app/presentation/pages/screen_otp/sections/otp_input_section.dart';
+import 'package:web_view_app/presentation/pages/screen_otp/sections/recent_otp_section.dart';
+import 'package:web_view_app/presentation/pages/screen_otp/sections/text_session.dart';
 import 'package:web_view_app/widget/flutter_toast.dart';
 import 'package:web_view_app/widget/loading_widget.dart';
 import 'package:web_view_app/widget/text_widget.dart';
@@ -43,7 +46,7 @@ class _ScreenOtpState extends State<ScreenOtp> {
             loadingWidget(context);
           }
           else if (state is OtpVerifiedState) {
-           Get.offAll(()=> ScreenHome());
+           Get.offAll(()=> const ScreenHome());
           
           }else if(state is OtpVerifyErrorState){
             log("erro state exicuted");
@@ -57,67 +60,12 @@ class _ScreenOtpState extends State<ScreenOtp> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                sizedBoxH50,
-                const TextWidget(
-                  text: "OTP",
-                  size: 38,
-                  fontWeight: FontWeight.w400,
-                ),
-                const TextWidget(
-                  text: "Verification",
-                  size: 38,
-                  fontWeight: FontWeight.w700,
-                ),
-                Row(
-                  children: [
-                    const TextWidget(
-                      text: "Enter the OTP sent to ",
-                      size: 16,
-                      color: Color.fromARGB(255, 135, 135, 135),
-                    ),
-                    TextWidget(
-                      text:
-                          "${widget.phone.substring(0, 8)}****${widget.phone[widget.phone.length - 1]}",
-                      size: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ],
-                ),
-                sizedBoxH50,
-                Center(
-                  child: PincodeInputFields(
-                    length: 6,
-                    heigth: 60,
-                    width: 60,
-                    autoFocus: true,
-                    controller: _controller,
-                    onChanged: (value) {
-                      log(value);
-                      if (value.length == 6) {
-                        log("call next");
-                        context
-                            .read<OtpPageBloc>()
-                            .add(OtpEnteredEvent(otp: value,verificationId: widget.verificationId));
-                      }
-                    },
-                  ),
-                ),
-                sizedBoxH50,
-                Center(
-                    child: TextWidget(
-                  text: "Didn't you receive any code?",
-                  color: Colors.red[400],
-                  size: 15,
-                )),
-                Center(
-                    child: TextButton(
-                  onPressed: () {},
-                  child: TextWidget(
-                    text: "RESEND NEW CODE",
-                    color: Colors.red,
-                    size: 15,
-                  ),
-                ))
+                //Const text and displaying some part of mobile number
+                TextSection(widget: widget),
+                //Otp input section--------------
+                OtpIputSection(controller: _controller, widget: widget),
+                //Resent otp section
+                 RecentOtpSection()
               ],
             ),
           ),
@@ -126,3 +74,5 @@ class _ScreenOtpState extends State<ScreenOtp> {
     );
   }
 }
+
+
